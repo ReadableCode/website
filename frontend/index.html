@@ -26,7 +26,7 @@
             result.textContent = 'Loading...';
 
             try {
-                const res = await fetch(`http://host.docker.internal:8002${endpoint}`, {
+                const res = await fetch(`https://api.tinkernet.me${endpoint}`, {
 
                     method: 'GET',
                     headers: {
