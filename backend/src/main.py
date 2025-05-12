@@ -1,11 +1,10 @@
 # %%
 # Imports #
 
-import io
-import os
 
-import pandas as pd
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile
+import time
+
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
 
@@ -21,21 +20,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app_start_time = time.time()
+
 # %%
 # Functions #
 
 
 @app.get("/status", response_class=PlainTextResponse)
 def get_status():
-    return "✅ App is running.\n📦 Version: 1.2.3\n🕒 Uptime: 12h 4m\n"
+    return f"✅ App is running.\n🕒 Uptime: {time.time() - app_start_time}"
 
 
-@app.get("/")
+@app.get("/", response_class=PlainTextResponse)
 def root():
-    """
-    Simple health check endpoint.
-    """
-    return {"status": "pong"}
+    return "pong"
 
 
 @app.get("/ping/")
