@@ -3,91 +3,64 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReadableCode</title>
+    <title>ReadableCode - Personal Projects</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
+            font-family: sans-serif;
+            padding: 2rem;
         }
 
-        header {
-            background-color: #4C6375;
-            color: #F8F8F8;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
+        h2 {
+            color: #333;
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
+        h3 {
+            color: #555;
+            margin-top: 1.5rem;
         }
 
-        nav a {
-            color: #4C6375;
-            margin: 0 10px;
+        p {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li strong {
+            color: #333;
+        }
+
+        li a {
+            color: #007bff;
             text-decoration: none;
         }
 
-        nav a:hover {
+        li a:hover {
             text-decoration: underline;
         }
 
-        section {
-            background-color: #fff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-
-        h1,
-        h2 {
-            color: #4C6375;
-        }
-
-        .accordion {
-            cursor: pointer;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            transition: 0.4s;
-            font-size: 16px;
-            display: flex;
-            justify-content: space-between;
-            background: none;
-        }
-
-        .accordion:hover,
-        .active {
-            background-color: #ccc;
-        }
-
-        .panel {
-            padding: 0 18px;
-            display: none;
-            background-color: white;
-            overflow: hidden;
+        /* Using Unicode emoji directly in CSS content */
+        li::before {
+            content: "-- ";
+            /* Unicode for wrench */
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
         }
     </style>
 </head>
 
-<body>
-    <header>
-        <h1>ReadableCode</h1>
-        <nav>
-            <a href="#about">About Me</a>
-            <a href="#projects">Projects</a>
-            <a href="#collaborate">Collaborate</a>
-        </nav>
-    </header>
 
+<body>
     <section id="about">
         <h2>About Me</h2>
         <p>
@@ -103,7 +76,7 @@
         <h2>Current Projects</h2>
         <ul>
             <li>
-                <button class="accordion">Python, Rust, and Go Data Tool Packs ▼</button>
+                <h3>Python, Rust, and Go Data Tool Packs</h3>
                 <div class="panel">
                     <p>I'm working on Python, Rust and Go based data tool packs that enable data science and analytics
                         professionals to access different platforms (e.g. Snowflake, RDS, AWS S3, Vault, Databricks)
@@ -115,7 +88,7 @@
                 </div>
             </li>
             <li>
-                <button class="accordion">Terminal Based Kanban Board ▼</button>
+                <h3>Terminal Based Kanban Board</h3>
                 <div class="panel">
                     <p>I'm developing a terminal-based Kanban board that leverages Linux-like commands for manipulation.
                         This project aims to streamline task management and enhance productivity by providing a seamless
@@ -130,7 +103,7 @@
                 </div>
             </li>
             <li>
-                <button class="accordion">AI-Powered eBook Organizer (Offline-First) ▼</button>
+                <h3>AI-Powered eBook Organizer (Offline-First)</h3>
                 <div class="panel">
                     <p>A smart eBook renaming and organization tool that processes messy ebook folders and uses a local
                         large language model
@@ -150,7 +123,7 @@
                 </div>
             </li>
             <li>
-                <button class="accordion">Dotfile Sync Application ▼</button>
+                <h3>Dotfile Sync Application</h3>
                 <div class="panel">
                     <p>My work involves creating a dotfile synchronization application. This tool empowers me to apply
                         settings to
@@ -163,7 +136,7 @@
                 </div>
             </li>
             <li>
-                <button class="accordion">A Girl's Guide to Georgetown ▼</button>
+                <h3>A Girl's Guide to Georgetown</h3>
                 <div class="panel">
                     <p>This project provides high school students in Georgetown, Texas, with a structured backend while
                         allowing them full creative control over the frontend. The backend, built in Go with Fiber,
@@ -183,7 +156,7 @@
                 </div>
             </li>
             <li>
-                <button class="accordion">Sync Application for Removable Storage ▼</button>
+                <h3>Sync Application for Removable Storage</h3>
                 <div class="panel">
                     <p>I'm developing a synchronization application tailored for removable storage. This application
                         ensures seamless syncing of sensitive directories, such as Git repositories, while handling
@@ -200,7 +173,7 @@
                 </div>
             </li>
             <li>
-                <button class="accordion">A 2D Game in Unity ▼</button>
+                <h3>A 2D Game in Unity</h3>
                 <div class="panel">
                     <p>I'm developing a 2D game with my wonderful wife using C# and the Unity engine. This project aims
                         to showcase my creativity and programming skills while exploring the intricacies of game
@@ -226,20 +199,6 @@
         </p>
     </section>
 
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
