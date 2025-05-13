@@ -7,7 +7,7 @@ import time
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, PlainTextResponse
+from fastapi.responses import PlainTextResponse
 
 # %%
 # Variables #
@@ -43,9 +43,6 @@ def ping():
     Simple health check endpoint.
     """
     return {"status": "pong"}
-
-
-from fastapi.responses import PlainTextResponse
 
 
 @app.get("/my-info/", response_class=PlainTextResponse)
