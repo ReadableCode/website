@@ -23,40 +23,66 @@
     <script>
         async function callAPI(endpoint) {
             const result = document.getElementById('result');
-            result.textContent = 'Loading...';
+            const htmlResult = document.getElementById('html-result');
+
+            result.style.display = 'none';
+            htmlResult.innerHTML = 'Loading...';
 
             try {
-                const res = await fetch(`https://api.tinkernet.me${endpoint}`, {
-
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
+                const res = await fetch(`https://api.tinkernet.me${endpoint}`);
                 const contentType = res.headers.get("content-type");
 
                 if (contentType.includes("application/json")) {
                     const data = await res.json();
+                    htmlResult.innerHTML = '';
+                    result.style.display = 'block';
                     result.textContent = JSON.stringify(data, null, 2);
+                } else if (contentType.includes("text/html")) {
+                    const text = await res.text();
+                    result.style.display = 'none';
+                    htmlResult.innerHTML = text;
                 } else {
                     const text = await res.text();
+                    htmlResult.innerHTML = '';
+                    result.style.display = 'block';
                     result.textContent = text;
                 }
             } catch (err) {
+                result.style.display = 'block';
+                htmlResult.innerHTML = '';
                 result.textContent = 'Error: ' + err;
             }
         }
+
+        async function showLocalHTML() {
+                const result = document.getElementById('result');
+                const htmlResult = document.getElementById('html-result');
+
+                result.style.display = 'none';
+                htmlResult.innerHTML = 'Loading...';
+
+                try {
+                    const res = await fetch("my_info.html");
+                    const html = await res.text();
+                    htmlResult.innerHTML = html;
+                } catch (err) {
+                    htmlResult.innerHTML = 'Error loading local file.';
+                }
+            }
     </script>
 </head>
 
 <body>
-    <h1>FastAPI Endpoint Tester</h1>
+    <h1>Check out my FastAPI application</h1>
     <button onclick="callAPI('/')">Call /</button><br>
     <button onclick="callAPI('/ping/')">Call /ping/</button><br>
-    <button onclick="callAPI('/status')">Call /status</button>
+    <button onclick="callAPI('/status')">Call /status</button><br>
+    <button onclick="callAPI('/my-info/')">Call /my-info/</button><br>
+    <button onclick="showLocalHTML()">Show my_info.html (from frontend)</button><br>
 
     <h2>Response:</h2>
-    <pre id="result"></pre>
+    <pre id="result" style="display: none;"></pre>
+    <div id="html-result"></div>
 </body>
 
 </html>
