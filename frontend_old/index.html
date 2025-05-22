@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jason's FastAPI Endpoint Frontend</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+        }
+
+        button {
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+        }
+
+        pre {
+            background: #eee;
+            padding: 1rem;
+        }
+    </style>
+    <script>
+        async function callAPI(endpoint) {
+            const result = document.getElementById('result');
+            const htmlResult = document.getElementById('html-result');
+
+            result.style.display = 'none';
+            htmlResult.innerHTML = 'Loading...';
+
+            try {
+                const res = await fetch(`https://api.tinkernet.me${endpoint}`);
+                const contentType = res.headers.get("content-type");
+
+                if (contentType.includes("application/json")) {
+                    const data = await res.json();
+                    htmlResult.innerHTML = '';
+                    result.style.display = 'block';
+                    result.textContent = JSON.stringify(data, null, 2);
+                } else if (contentType.includes("text/html")) {
+                    const text = await res.text();
+                    result.style.display = 'none';
+                    htmlResult.innerHTML = text;
+                } else {
+                    const text = await res.text();
+                    htmlResult.innerHTML = '';
+                    result.style.display = 'block';
+                    result.textContent = text;
+                }
+            } catch (err) {
+                result.style.display = 'block';
+                htmlResult.innerHTML = '';
+                result.textContent = 'Error: ' + err;
+            }
+        }
+
+        async function showLocalHTML() {
+                const result = document.getElementById('result');
+                const htmlResult = document.getElementById('html-result');
+
+                result.style.display = 'none';
+                htmlResult.innerHTML = 'Loading...';
+
+                try {
+                    const res = await fetch("my_info.html");
+                    const html = await res.text();
+                    htmlResult.innerHTML = html;
+                } catch (err) {
+                    htmlResult.innerHTML = 'Error loading local file.';
+                }
+            }
+    </script>
+</head>
+
+<body>
+    <h1>Jason's FastAPI Endpoint Frontend</h1>
+    <button onclick="callAPI('/')">Call /</button><br>
+    <button onclick="callAPI('/ping/')">Call /ping/</button><br>
+    <button onclick="callAPI('/status')">Call /status</button><br>
+    <button onclick="callAPI('/my-info/')">Call /my-info/ (from backend)</button><br>
+    <button onclick="showLocalHTML()">Show my_info.html (from frontend)</button><br>
+
+    <h2>Response:</h2>
+    <pre id="result" style="display: none;"></pre>
+    <div id="html-result"></div>
+</body>
+
+</html>
