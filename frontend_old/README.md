@@ -24,3 +24,5 @@ cd <project_name>
 npm install
 npm run dev
 ```
+
+Following Video Linked [here](https://youtu.be/SqcY0GlETPk?si=zp1oVnPKeGMyo7Qe)
