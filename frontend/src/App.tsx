@@ -8,10 +8,20 @@ function App() {
     "Porta ac consectetur ac",
     "Vestibulum at eros",
   ];
+
   const heading = "My List";
+
+  const handleSelectItem = (item: string) => {
+    console.log(item);
+  };
+
   return (
     <div>
-      <ListGroup items={items} heading={heading} />
+      <ListGroup
+        items={items}
+        heading={heading}
+        onSelectItem={handleSelectItem}
+      />
     </div>
   );
 }
