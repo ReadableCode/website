@@ -18,5 +18,3 @@ npm run dev
 ```bash
 npm install bootstrap
 ```
-
-Following Video Linked [video here](https://youtu.be/SqcY0GlETPk?si=iOrTEMzYxPBEr-p2&t=3354)
