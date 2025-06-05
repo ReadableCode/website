@@ -1,4 +1,13 @@
-# React + TypeScript + Vite
+# Website Frontend React
+
+## Running with docker
+
+```bash
+docker build -t website-frontend-react .
+docker run -it --rm -p 3000:80 website-frontend-react
+```
+
+## Default generated from React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
