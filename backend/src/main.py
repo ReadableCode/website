@@ -37,7 +37,7 @@ def root():
     return "pong"
 
 
-@app.get("/ping/")
+@app.get("/ping")
 def ping():
     """
     Simple health check endpoint.
@@ -45,7 +45,7 @@ def ping():
     return {"status": "pong"}
 
 
-@app.get("/my-info/", response_class=PlainTextResponse)
+@app.get("/my-info", response_class=PlainTextResponse)
 def my_info():
     return """
         ReadableCode - Personal Projects
