@@ -12,7 +12,7 @@ export default function LiveProof() {
       .then((r) => (r.ok ? r.text() : Promise.reject()))
       .then((txt) => {
         clearTimeout(t);
-        const m = txt.match(/([\d.]+)/);
+        const m = txt.match(/uptime[:\s]*(\d+(?:\.\d+)?)/i);
         setBadge(m ? "● live · uptime " + Math.round(parseFloat(m[1])) + "s" : "● live now");
         setLive(true);
       })
