@@ -1,0 +1,24 @@
+# website's service definitions for the elitedesk stack. Pulled into
+# Docker/docker_compose_projects.yaml via `include:`; the include entry sets
+# project_directory to this repo's root, so relative paths resolve from here.
+services:
+  website-backend:
+    image: website_backend_image
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: website_backend_container
+    restart: unless-stopped
+    # No published ports: reachable only on the docker network, via the
+    # frontend's nginx /api/ proxy. Not exposed to the host or the internet.
+  website-frontend:
+    image: website_frontend_image
+    build:
+      context: ./frontend_react
+      dockerfile: Dockerfile
+    container_name: website_frontend_container
+    restart: unless-stopped
+    depends_on:
+      - website-backend
+    ports:
+      - 8082:80
