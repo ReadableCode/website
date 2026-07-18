@@ -12,8 +12,11 @@ badge proving the page is dynamically served from my own homelab.
   served by nginx. Its nginx also reverse-proxies `/api/` to the backend on the
   internal Docker network, so the browser only ever talks to one origin.
 - **`backend/`** — FastAPI (uv). Endpoints: `/status`, `/ping`, `/projects`
-  (the frontend renders its project cards from this), and `/my-info`
-  (`curl https://site.tinkernet.me/api/my-info` to read my bio from the terminal).
+  (the frontend renders its project cards from this), `/my-info`
+  (`curl https://site.tinkernet.me/api/my-info` to read my bio from the terminal),
+  `/temp` (live CPU temps of the serving hardware, read from the host's sysfs),
+  and `/curl` — a full plaintext edition of the site, proxied at the root so
+  `curl https://site.tinkernet.me/curl` works without the `/api` prefix.
   Publishes **no** host ports — reachable only through the frontend's `/api` proxy,
   never directly from the internet, so there's no CORS surface to widen.
 
