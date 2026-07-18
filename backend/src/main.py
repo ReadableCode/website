@@ -3,6 +3,7 @@
 
 
 import time
+from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI
@@ -172,6 +173,53 @@ Projects
 # Functions #
 
 
+def read_cpu_temps():
+    """Read temperature sensors from sysfs.
+
+    Docker mounts the host's /sys read-only into containers, so hwmon exposes
+    the real sensors of the machine serving this request — live proof the site
+    runs on physical homelab hardware. Falls back to thermal_zone entries, and
+    returns [] where the kernel exposes no sensors (e.g. some VMs/CI).
+    """
+    temps = []
+    for hwmon in sorted(Path("/sys/class/hwmon").glob("hwmon*")):
+        try:
+            chip = (hwmon / "name").read_text().strip()
+        except OSError:
+            continue
+        for temp_input in sorted(hwmon.glob("temp*_input")):
+            try:
+                millideg = int(temp_input.read_text().strip())
+            except (OSError, ValueError):
+                continue
+            try:
+                label = (hwmon / temp_input.name.replace("_input", "_label")).read_text().strip()
+            except OSError:
+                label = temp_input.name.removesuffix("_input")
+            temps.append({"chip": chip, "label": label, "celsius": millideg / 1000})
+    if not temps:
+        for zone in sorted(Path("/sys/class/thermal").glob("thermal_zone*")):
+            try:
+                chip = (zone / "type").read_text().strip()
+                millideg = int((zone / "temp").read_text().strip())
+            except (OSError, ValueError):
+                continue
+            temps.append({"chip": chip, "label": zone.name, "celsius": millideg / 1000})
+    return temps
+
+
+def format_temps_text(temps):
+    if not temps:
+        return "No temperature sensors visible from this container."
+    width = max(len(f"{t['chip']}/{t['label']}") for t in temps)
+    lines = []
+    for t in temps:
+        c = t["celsius"]
+        bar = "#" * max(1, min(40, int(c / 2.5)))
+        lines.append(f"{t['chip'] + '/' + t['label']:<{width}}  {c:5.1f}°C  {bar}")
+    return "\n".join(lines)
+
+
 @app.get("/", response_class=PlainTextResponse)
 def root():
     return "pong"
@@ -192,6 +240,64 @@ def get_status():
 def projects():
     """Canonical featured-project list — the live frontend renders its cards from this."""
     return {"projects": PROJECTS}
+
+
+@app.get("/temp")
+def temp(format: str = "text"):
+    """Live CPU/board temperatures of the homelab machine serving this request."""
+    temps = read_cpu_temps()
+    if format == "json":
+        return {"temps": temps}
+    return PlainTextResponse(
+        "Live sensor readings from the box serving this page:\n\n"
+        + format_temps_text(temps)
+        + "\n"
+    )
+
+
+@app.get("/curl", response_class=PlainTextResponse)
+def curl_site():
+    """The whole site as plaintext — `curl site.tinkernet.me/curl`."""
+    uptime_s = int(time.time() - app_start_time)
+    days, rem = divmod(uptime_s, 86400)
+    hours, rem = divmod(rem, 3600)
+    minutes, _ = divmod(rem, 60)
+
+    sections = [
+        r"""
+    _ _        _   _      _                    _
+ __(_) |_ ___ | |_(_)_ _ | |_____ _ _ _ _  ___| |_   _ __  ___
+(_-< |  _/ -_)|  _| | ' \| / / -_) '_| ' \/ -_)  _|_| '  \/ -_)
+/__/_|\__\___(_)__|_|_||_|_\_\___|_| |_||_\___|\__(_)_|_|_\___|
+""",
+        "You found the curlable edition. This page is rendered live by the same",
+        "FastAPI backend as the website, self-hosted on my homelab.",
+        "",
+        f"Backend uptime: {days}d {hours}h {minutes}m",
+        "",
+        "== Sensors (live, from the serving hardware) " + "=" * 30,
+        "",
+        format_temps_text(read_cpu_temps()),
+        "",
+        "== About " + "=" * 66,
+        "",
+        my_info(),
+        "== Endpoints " + "=" * 62,
+        "",
+        "  /curl           this page",
+        "  /api/ping       health check (JSON)",
+        "  /api/status     uptime, plaintext",
+        "  /api/temp       live CPU temps (?format=json for JSON)",
+        "  /api/projects   featured projects (JSON)",
+        "  /api/my-info    bio + projects, plaintext",
+        "",
+        "== Visit " + "=" * 66,
+        "",
+        "  Browser:  https://site.tinkernet.me  (type `help` in the terminal)",
+        "  GitHub:   https://github.com/ReadableCode",
+        "",
+    ]
+    return "\n".join(sections)
 
 
 @app.get("/my-info", response_class=PlainTextResponse)
