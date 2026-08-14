@@ -30,9 +30,9 @@ PROJECTS = [
         "name": "Sync_Plex",
         "url": "https://github.com/ReadableCode/Sync_Plex",
         "blurb": (
-            "A household media system: search and add shows or movies across every "
-            "Sonarr, Radarr, and Plex server on the network from a CLI, a Textual TUI, "
-            "or a phone-friendly web app, with user accounts and an approval queue. A "
+            "A household media system: search Plex libraries and add new shows or movies "
+            "across the network's media servers from a CLI, a Textual TUI, or a "
+            "phone-friendly web app, with user accounts and an approval queue. A "
             "companion tool mirrors selected titles onto an external drive for travel."
         ),
         "tags": ["Python", "Textual", "NiceGUI"],

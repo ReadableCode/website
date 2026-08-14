@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
     name: "Sync_Plex",
     url: "https://github.com/ReadableCode/Sync_Plex",
     blurb:
-      "A household media system: search and add shows or movies across every Sonarr, Radarr, and Plex server on the network from a CLI, a Textual TUI, or a phone-friendly web app, with user accounts and an approval queue. A companion tool mirrors selected titles onto an external drive for travel.",
+      "A household media system: search Plex libraries and add new shows or movies across the network's media servers from a CLI, a Textual TUI, or a phone-friendly web app, with user accounts and an approval queue. A companion tool mirrors selected titles onto an external drive for travel.",
     tags: ["Python", "Textual", "NiceGUI"],
   },
   {
@@ -112,16 +112,21 @@ export const PROJECTS: Project[] = [
 
 export const SKILLS: [string, string][] = [
   ["Languages", "Python (uv), TypeScript, Go, Rust, SQL, Bash / PowerShell / AutoHotkey, C#"],
-  ["Web / API", "FastAPI, React 19 + Vite, Streamlit, NiceGUI, Phaser 3"],
-  ["TUI / CLI", "Textual, Typer, custom terminal apps"],
+  ["Web / API", "FastAPI, React 19 + Vite, nginx, Streamlit, NiceGUI, Phaser 3"],
+  ["TUI / CLI", "Textual, Typer, Rich, custom terminal apps"],
   ["Data", "pandas, DuckDB, warehouse connectors (Snowflake/Databricks/Looker), OCR/PDF"],
   ["Databases / storage", "PostgreSQL + PostgREST, Alembic + RLS, SQLite, MinIO/S3, Vault"],
-  ["Auth / security", "JWT (HS256), bcrypt, Postgres Row-Level Security"],
+  ["Auth / security", "Authelia SSO, JWT (HS256), bcrypt/argon2, Postgres Row-Level Security"],
   [
     "Infra / DevOps",
-    "Docker & multi-host Compose, SWAG + TLS + dynamic DNS, Authelia, private registry, Grafana + ntfy, Ansible, k3s, Tailscale, uv, push-to-master auto-deploy",
+    "Docker & multi-host Compose, SWAG + TLS + dynamic DNS, private registry, Grafana + ntfy, Ansible, k3s, Tailscale, WireGuard, push-to-master auto-deploy",
   ],
-  ["AI", "Local-LLM inference with a swappable OpenAI backend"],
+  [
+    "Automation / ops",
+    "SSH automation (paramiko, jump hosts), scheduled backups (Postgres dumps, rsync offsite), Home Assistant",
+  ],
+  ["Testing / quality", "pytest, mypy, ESLint, GitHub Actions"],
+  ["AI", "Local LLM serving (llama.cpp, CUDA), swappable OpenAI backend, agent-assisted development with Claude Code"],
 ];
 
 export const BIO = `I'm Jason, ReadableCode on GitHub. I build automation and reusable tools
