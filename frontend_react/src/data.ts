@@ -6,19 +6,19 @@
 export interface Project {
   id: string;
   name: string;
-  url: string;
+  url: string; // empty string = private repo, render without a link
   blurb: string;
   tags: string[];
 }
 
 export const PROJECTS: Project[] = [
   {
-    id: "data-tool-pack",
-    name: "Data Tool Pack (Python / Go / Rust)",
-    url: "https://github.com/ReadableCode/Data_Tool_Pack_Py",
+    id: "sync-plex",
+    name: "Sync_Plex",
+    url: "https://github.com/ReadableCode/Sync_Plex",
     blurb:
-      "Uniform connectors for Snowflake, Databricks, S3, Vault, DuckDB, Google Workspace, and Looker, so analytics work doesn't start with a day of setup. Python, Go, and Rust editions.",
-    tags: ["Python", "Go", "Rust", "data"],
+      "A household media system: search and add shows or movies across every Sonarr, Radarr, and Plex server on the network from a CLI, a Textual TUI, or a phone-friendly web app, with user accounts and an approval queue. A companion tool mirrors selected titles onto an external drive for travel.",
+    tags: ["Python", "Textual", "NiceGUI"],
   },
   {
     id: "herdstone",
@@ -27,6 +27,30 @@ export const PROJECTS: Project[] = [
     blurb:
       "A machine-herd monitor. One Python engine with three thin UIs (Typer CLI, Textual TUI, NiceGUI web) that import it in-process, no internal REST layer. Concurrent ping fan-out, JSON-driven inventory, Ansible importer.",
     tags: ["Python", "Textual", "asyncio"],
+  },
+  {
+    id: "status-board",
+    name: "status_board",
+    url: "https://github.com/ReadableCode/status_board",
+    blurb:
+      "A terminal dashboard showing remote cron job status over SSH and pull requests awaiting my review across several accounts, in one pane. Panel definitions live in separate config repos, and SSH jump chains are part of the config so it behaves the same on every machine.",
+    tags: ["Python", "Textual", "SSH"],
+  },
+  {
+    id: "readable-utils",
+    name: "readable_utils",
+    url: "https://github.com/ReadableCode/readable_utils",
+    blurb:
+      "A versioned Python utility package that replaced the helper directories I used to copy between repos. Installed from git by tag, with optional dependency extras so each consumer only installs what it needs. Used by herdstone, status_board, and others.",
+    tags: ["Python", "packaging", "uv"],
+  },
+  {
+    id: "data-tool-pack",
+    name: "Data Tool Pack (Python / Go / Rust)",
+    url: "https://github.com/ReadableCode/Data_Tool_Pack_Py",
+    blurb:
+      "Uniform connectors for Snowflake, Databricks, S3, Vault, DuckDB, Google Workspace, and Looker, so analytics work doesn't start with a day of setup. Python, Go, and Rust editions.",
+    tags: ["Python", "Go", "Rust", "data"],
   },
   {
     id: "load-log",
@@ -53,14 +77,6 @@ export const PROJECTS: Project[] = [
     tags: ["Python", "local-LLM", "SQLite"],
   },
   {
-    id: "terminal-todo",
-    name: "Terminal To-Do",
-    url: "https://github.com/ReadableCode/Terminal_To_Do",
-    blurb:
-      "A terminal Kanban board driven by Linux-like commands, with pluggable storage (self-hosted MinIO/S3 or Google Sheets).",
-    tags: ["Python", "TUI", "MinIO"],
-  },
-  {
     id: "dotfiles",
     name: "dotfiles",
     url: "https://github.com/ReadableCode/dotfiles",
@@ -77,36 +93,20 @@ export const PROJECTS: Project[] = [
     tags: ["TypeScript", "Phaser 3"],
   },
   {
+    id: "terminal-todo",
+    name: "Terminal To-Do",
+    url: "https://github.com/ReadableCode/Terminal_To_Do",
+    blurb:
+      "A terminal Kanban board driven by Linux-like commands, with pluggable storage (self-hosted MinIO/S3 or Google Sheets).",
+    tags: ["Python", "TUI", "MinIO"],
+  },
+  {
     id: "docker",
     name: "Self-hosted platform",
-    url: "https://github.com/ReadableCode/Docker",
+    url: "",
     blurb:
-      "The infrastructure everything else runs on: multi-host Docker Compose behind a SWAG reverse proxy with TLS and dynamic DNS, a private registry, self-hosted secrets, and metrics. Pushing to master redeploys whatever changed.",
+      "The infrastructure everything else runs on: multi-host Docker Compose behind a SWAG reverse proxy with TLS and dynamic DNS. elitedesk, the main server, runs Authelia, Vaultwarden, Postgres with PostgREST and pgAdmin, MinIO, Grafana, ntfy, Portainer, Plex, a private registry, and my own apps, each included from its own repo's compose file. behemoth, an Unraid NAS, holds the bulk storage. Pushing to master redeploys whatever changed. The repo stays private since it maps my internal network.",
     tags: ["Docker", "SWAG", "self-hosting"],
-  },
-  {
-    id: "duck-db-api",
-    name: "duck_db_api",
-    url: "https://github.com/ReadableCode/duck_db_api",
-    blurb:
-      "A thin FastAPI service over DuckDB for ad-hoc table create/insert/query, with basic safety guards and file upload ingestion.",
-    tags: ["FastAPI", "DuckDB"],
-  },
-  {
-    id: "cash-flow-commander",
-    name: "Cash Flow Commander",
-    url: "https://github.com/ReadableCode/Cash_Flow_Commander",
-    blurb:
-      "A personal finance manager built for multiple frontends over pluggable storage backends. Postgres today; Sheets, SQLite, and Excel planned.",
-    tags: ["Python", "Postgres"],
-  },
-  {
-    id: "georgetown",
-    name: "A Girl's Guide to Georgetown",
-    url: "https://github.com/ReadableCode/a_girls_guide_to_georgetown",
-    blurb:
-      "A Go/Fiber backend that serves pages dynamically for a student-run site, so the students own the HTML/CSS/JS and can iterate without backend rebuilds.",
-    tags: ["Go", "Fiber", "Docker"],
   },
 ];
 
@@ -119,7 +119,7 @@ export const SKILLS: [string, string][] = [
   ["Auth / security", "JWT (HS256), bcrypt, Postgres Row-Level Security"],
   [
     "Infra / DevOps",
-    "Docker & multi-host Compose, SWAG + TLS + dynamic DNS, private registry, Ansible, k3s, Tailscale, uv, push-to-master auto-deploy",
+    "Docker & multi-host Compose, SWAG + TLS + dynamic DNS, Authelia, private registry, Grafana + ntfy, Ansible, k3s, Tailscale, uv, push-to-master auto-deploy",
   ],
   ["AI", "Local-LLM inference with a swappable OpenAI backend"],
 ];

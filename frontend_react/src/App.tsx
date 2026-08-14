@@ -82,9 +82,13 @@ export default function App() {
           {projects.map((p) => (
             <div className="card" key={p.id}>
               <h3>
-                <a href={p.url} target="_blank" rel="noopener">
-                  {p.name}
-                </a>
+                {p.url ? (
+                  <a href={p.url} target="_blank" rel="noopener">
+                    {p.name}
+                  </a>
+                ) : (
+                  p.name
+                )}
               </h3>
               <p>{p.blurb}</p>
               <div className="tags">

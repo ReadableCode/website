@@ -41,6 +41,10 @@ export default function Terminal() {
     }
     push("<span class='out-accent'>" + esc(p.name) + "</span>");
     push(esc(p.blurb), "out-dim");
+    if (!p.url) {
+      push("(private repo, no public link.)", "out-dim");
+      return;
+    }
     push("→ <a href='" + p.url + "' target='_blank' rel='noopener'>" + p.url + "</a>");
     push("opening in a new tab…", "out-dim");
     window.open(p.url, "_blank", "noopener");
