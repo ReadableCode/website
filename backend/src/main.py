@@ -21,17 +21,17 @@ app = FastAPI(title="ReadableCode API", description="Backend for site.tinkernet.
 
 app_start_time = time.time()
 
-# Canonical featured projects — kept in sync with the profile README and the
-# GitHub Pages mirror. The live React frontend renders its cards from /projects.
+# Featured projects. Kept in sync with the profile README and the GitHub
+# Pages mirror. The live React frontend renders its cards from /projects.
 PROJECTS = [
     {
         "id": "data-tool-pack",
-        "name": "Data Tool Pack (Py · Go · Rust)",
+        "name": "Data Tool Pack (Python / Go / Rust)",
         "url": "https://github.com/ReadableCode/Data_Tool_Pack_Py",
         "blurb": (
-            "A batteries-included data-engineering toolkit: uniform connectors for "
-            "Snowflake, Databricks, S3, Vault, DuckDB, Google Workspace, and Looker "
-            "— so analytics work starts without the setup tax. Three language editions."
+            "Uniform connectors for Snowflake, Databricks, S3, Vault, DuckDB, Google "
+            "Workspace, and Looker, so analytics work doesn't start with a day of setup. "
+            "Python, Go, and Rust editions."
         ),
         "tags": ["Python", "Go", "Rust", "data"],
     },
@@ -40,9 +40,9 @@ PROJECTS = [
         "name": "herdstone",
         "url": "https://github.com/ReadableCode/herdstone",
         "blurb": (
-            "A cross-platform machine-herd monitor. One Python engine, three thin UIs "
-            "(Typer CLI, Textual TUI, NiceGUI web) that import it in-process — no internal "
-            "REST layer. Concurrent ICMP ping fan-out, JSON-driven inventory, Ansible importer."
+            "A machine-herd monitor. One Python engine with three thin UIs (Typer CLI, "
+            "Textual TUI, NiceGUI web) that import it in-process, no internal REST layer. "
+            "Concurrent ping fan-out, JSON-driven inventory, Ansible importer."
         ),
         "tags": ["Python", "Textual", "asyncio"],
     },
@@ -51,9 +51,9 @@ PROJECTS = [
         "name": "load-log",
         "url": "https://github.com/ReadableCode/load-log",
         "blurb": (
-            "A personal health tracker with a Textual TUI and a Streamlit web UI over a "
-            "shared data plane. Neither UI touches Postgres directly — both authenticate to "
-            "a JWT service and read/write through PostgREST, with per-schema roles + RLS."
+            "A health tracker with a Textual TUI and a Streamlit web UI over shared "
+            "storage. Neither UI touches Postgres directly: both go through PostgREST "
+            "with JWT auth and row-level security."
         ),
         "tags": ["PostgREST", "JWT", "RLS"],
     },
@@ -62,9 +62,9 @@ PROJECTS = [
         "name": "postgrest-auth",
         "url": "https://github.com/ReadableCode/postgrest-auth",
         "blurb": (
-            "A small, app-agnostic JWT auth microservice beside PostgREST: POST /token "
-            "verifies a bcrypt hash and returns a JWT carrying the Postgres role + user id "
-            "for RLS. Add once, reuse across every app."
+            "A small JWT auth service that sits next to PostgREST: POST /token checks a "
+            "bcrypt hash and returns a JWT carrying the Postgres role and user id for RLS. "
+            "Written once, used by my other apps."
         ),
         "tags": ["FastAPI", "JWT", "bcrypt"],
     },
@@ -73,9 +73,9 @@ PROJECTS = [
         "name": "Book-Bot",
         "url": "https://github.com/ReadableCode/Book-Bot",
         "blurb": (
-            "An offline-first, AI-powered eBook organizer. A local LLM (no internet or "
-            "accounts required) infers author, series, order, and title from messy folders "
-            "and restructures libraries into clean nested trees — with a swap path to hosted APIs."
+            "An offline eBook organizer. A local LLM (no internet or accounts required) "
+            "works out author, series, order, and title from messy folders and rebuilds "
+            "the library into clean nested folders. Can be pointed at hosted APIs instead."
         ),
         "tags": ["Python", "local-LLM", "SQLite"],
     },
@@ -85,7 +85,7 @@ PROJECTS = [
         "url": "https://github.com/ReadableCode/Terminal_To_Do",
         "blurb": (
             "A terminal Kanban board driven by Linux-like commands, with pluggable "
-            "cloud-backed storage (self-hosted MinIO/S3 or Google Sheets)."
+            "storage (self-hosted MinIO/S3 or Google Sheets)."
         ),
         "tags": ["Python", "TUI", "MinIO"],
     },
@@ -94,9 +94,9 @@ PROJECTS = [
         "name": "dotfiles",
         "url": "https://github.com/ReadableCode/dotfiles",
         "blurb": (
-            "A cross-platform config-sync and provisioning system spanning Linux, Windows, "
-            "macOS, Android, a router, and a NAS. Pulls configs over SSH/SCP, provisions with "
-            "Ansible, and ships a Go git_puller cross-compiled for four OS/arch targets."
+            "Config sync and provisioning across Linux, Windows, macOS, Android, a "
+            "router, and a NAS. Pulls configs over SSH/SCP, provisions with Ansible, and "
+            "includes a Go git_puller cross-compiled for four OS/arch targets."
         ),
         "tags": ["Ansible", "Go", "Bash"],
     },
@@ -105,9 +105,9 @@ PROJECTS = [
         "name": "Trojan-Force",
         "url": "https://github.com/ReadableCode/Trojan-Force",
         "blurb": (
-            "A browser tower-defense game (TypeScript + Phaser 3 + Vite): mine resources, "
-            "build supply chains, survive 20 waves. Hand-rolled pathfinding, resource "
-            "manager, and event bus, with LAN multi-device play."
+            "A browser tower-defense game (TypeScript, Phaser 3, Vite): mine resources, "
+            "build supply chains, survive 20 waves. Custom pathfinding, resource manager, "
+            "and event bus, plus LAN multi-device play."
         ),
         "tags": ["TypeScript", "Phaser 3"],
     },
@@ -116,9 +116,9 @@ PROJECTS = [
         "name": "Self-hosted platform",
         "url": "https://github.com/ReadableCode/Docker",
         "blurb": (
-            "The infrastructure everything else runs on: multi-host Docker Compose behind a "
-            "SWAG reverse proxy with automatic TLS and dynamic DNS, a private container "
-            "registry, self-hosted secrets, metrics — plus push-to-master auto-deploy."
+            "The infrastructure everything else runs on: multi-host Docker Compose behind "
+            "a SWAG reverse proxy with TLS and dynamic DNS, a private registry, self-hosted "
+            "secrets, and metrics. Pushing to master redeploys whatever changed."
         ),
         "tags": ["Docker", "SWAG", "self-hosting"],
     },
@@ -127,8 +127,8 @@ PROJECTS = [
         "name": "duck_db_api",
         "url": "https://github.com/ReadableCode/duck_db_api",
         "blurb": (
-            "A thin FastAPI service over DuckDB for ad-hoc table create / insert / query, "
-            "with basic safety guards and file-upload ingestion."
+            "A thin FastAPI service over DuckDB for ad-hoc table create/insert/query, "
+            "with basic safety guards and file upload ingestion."
         ),
         "tags": ["FastAPI", "DuckDB"],
     },
@@ -137,8 +137,8 @@ PROJECTS = [
         "name": "Cash Flow Commander",
         "url": "https://github.com/ReadableCode/Cash_Flow_Commander",
         "blurb": (
-            "A personal-finance manager designed for multiple front-ends over pluggable "
-            "storage backends — Postgres today, with Sheets / SQLite / Excel planned."
+            "A personal finance manager built for multiple frontends over pluggable "
+            "storage backends. Postgres today; Sheets, SQLite, and Excel planned."
         ),
         "tags": ["Python", "Postgres"],
     },
@@ -147,22 +147,22 @@ PROJECTS = [
         "name": "A Girl's Guide to Georgetown",
         "url": "https://github.com/ReadableCode/a_girls_guide_to_georgetown",
         "blurb": (
-            "A student-led dev platform: a Go/Fiber backend dynamically serves pages so "
-            "students own the HTML/CSS/JS and iterate without backend rebuilds."
+            "A Go/Fiber backend that serves pages dynamically for a student-run site, so "
+            "the students own the HTML/CSS/JS and can iterate without backend rebuilds."
         ),
         "tags": ["Go", "Fiber", "Docker"],
     },
 ]
 
 MY_INFO = """\
-ReadableCode — Jason Christiansen
+ReadableCode - Jason Christiansen
 
 About
 -----
-Greetings! I'm a developer dedicated to automation and modular, reusable
-solutions to problems I find interesting. Everything here is a personal
-project; most of it runs on a self-hosted homelab wired together with Docker
-and auto-deployed on push. Please comment, fork, and contribute.
+I'm Jason, ReadableCode on GitHub. I build automation and reusable tools
+for problems I find interesting. Everything here is a personal project;
+most of it runs on my homelab, wired together with Docker and redeployed
+on push. Comments, forks, and PRs are welcome.
 
 Projects
 --------
@@ -177,9 +177,9 @@ def read_cpu_temps():
     """Read temperature sensors from sysfs.
 
     Docker mounts the host's /sys read-only into containers, so hwmon exposes
-    the real sensors of the machine serving this request — live proof the site
-    runs on physical homelab hardware. Falls back to thermal_zone entries, and
-    returns [] where the kernel exposes no sensors (e.g. some VMs/CI).
+    the real sensors of the machine serving this request. Falls back to
+    thermal_zone entries, and returns [] where the kernel exposes no sensors
+    (e.g. some VMs/CI).
     """
     temps = []
     for hwmon in sorted(Path("/sys/class/hwmon").glob("hwmon*")):
@@ -238,7 +238,7 @@ def get_status():
 
 @app.get("/projects")
 def projects():
-    """Canonical featured-project list — the live frontend renders its cards from this."""
+    """Featured project list. The live frontend renders its cards from this."""
     return {"projects": PROJECTS}
 
 
@@ -257,7 +257,7 @@ def temp(format: str = "text"):
 
 @app.get("/curl", response_class=PlainTextResponse)
 def curl_site():
-    """The whole site as plaintext — `curl site.tinkernet.me/curl`."""
+    """The whole site as plaintext: `curl site.tinkernet.me/curl`."""
     uptime_s = int(time.time() - app_start_time)
     days, rem = divmod(uptime_s, 86400)
     hours, rem = divmod(rem, 3600)
@@ -304,9 +304,9 @@ def curl_site():
 def my_info():
     lines = [MY_INFO]
     for p in PROJECTS:
-        lines.append(f"• {p['name']}\n  {p['blurb']}\n  {p['url']}\n")
+        lines.append(f"- {p['name']}\n  {p['blurb']}\n  {p['url']}\n")
     lines.append("Also: a 2D game in Unity/C# (with my wife, not open source yet).\n")
-    lines.append("Find me: https://github.com/ReadableCode · https://readablecode.github.io\n")
+    lines.append("Find me: https://github.com/ReadableCode / https://readablecode.github.io\n")
     return "\n".join(lines)
 
 

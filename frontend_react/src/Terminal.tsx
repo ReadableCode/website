@@ -22,7 +22,7 @@ export default function Terminal() {
   const push = (html: string, cls?: string) => setLines((prev) => [...prev, { html, cls }]);
 
   useEffect(() => {
-    push("<span class='out-accent'>readablecode</span> // portfolio terminal — v1.0");
+    push("<span class='out-accent'>readablecode</span> // portfolio terminal v1.0");
     push("type <span class='out-amber'>help</span> to get started, or scroll for the graphical view.", "out-dim");
     push("");
   }, []);
@@ -54,10 +54,10 @@ export default function Terminal() {
       const txt = await r.text();
       txt.split("\n").forEach((l) => push(esc(l)));
       push("");
-      push("↑ that came live from my own FastAPI backend, proxied same-origin.", "out-dim");
+      push("that answer came from the live FastAPI backend, proxied same-origin.", "out-dim");
     } catch {
       BIO.split("\n").forEach((l) => push(esc(l)));
-      push("(backend unreachable right now — showed the bundled copy.)", "out-dim");
+      push("(backend unreachable right now, showing the bundled copy.)", "out-dim");
     }
   };
 
@@ -73,7 +73,7 @@ export default function Terminal() {
       BIO.split("\n").forEach((l) => push(esc(l)));
     },
     whoami() {
-      push("jason — ReadableCode. developer, automator, homelab tinkerer.", "out-accent");
+      push("jason (ReadableCode). developer, automator, homelab tinkerer.", "out-accent");
     },
     skills() {
       SKILLS.forEach(([a, t]) =>
@@ -82,7 +82,7 @@ export default function Terminal() {
     },
     projects() {
       push(
-        "open a project with <span class='out-amber'>open &lt;name&gt;</span> — e.g. <span class='out-amber'>open herdstone</span>",
+        "open a project with <span class='out-amber'>open &lt;name&gt;</span>, e.g. <span class='out-amber'>open herdstone</span>",
         "out-dim"
       );
       PROJECTS.forEach((p) =>
@@ -122,7 +122,7 @@ export default function Terminal() {
     }
     const fn = COMMANDS[name];
     if (fn) return fn();
-    push("command not found: " + esc(name) + "  — type <span class='out-amber'>help</span>", "out-amber");
+    push("command not found: " + esc(name) + "  (type <span class='out-amber'>help</span>)", "out-amber");
   };
 
   const onKey = (e: React.KeyboardEvent<HTMLInputElement>) => {

@@ -112,7 +112,7 @@ export default function App() {
       </section>
 
       <footer>
-        <span>Built &amp; self-hosted by Jason Christiansen · always up for collaboration.</span>
+        <span>Built and self-hosted by Jason Christiansen.</span>
         <span>
           <a href={LINKS.github} target="_blank" rel="noopener">
             github

@@ -34,8 +34,8 @@ export default function LiveProof() {
         <span className={"badge" + (live === false ? " dim" : "")}>{badge}</span>
         <div className="proof-text">
           {live
-            ? "You're looking at the live page — served from my own homelab. This React front end talks to a FastAPI back end that publishes no public ports; it's reachable only through this page's same-origin /api proxy, behind a self-hosted reverse proxy with real TLS."
-            : "This page is served from my own homelab: a React front end and a FastAPI back end behind a self-hosted reverse proxy. (The uptime badge is quiet right now, but the projects and bio still come from the same stack.)"}
+            ? "You're looking at the live page, served from my own homelab. This React frontend talks to a FastAPI backend that publishes no public ports; it's only reachable through this page's same-origin /api proxy, behind a self-hosted reverse proxy with real TLS."
+            : "This page is served from my own homelab: a React frontend and a FastAPI backend behind a self-hosted reverse proxy. (The uptime badge is quiet right now, but the projects and bio still come from the same stack.)"}
         </div>
         <a className="btn" href={LINKS.pages} target="_blank" rel="noopener">
           static mirror ↗

@@ -43,11 +43,11 @@ export default function HerdMonitor() {
     <section id="herd">
       <h2>// herd monitor</h2>
       <p className="mono-note">
-        A nod to{" "}
+        The same idea as{" "}
         <a href={LINKS.github + "/herdstone"} target="_blank" rel="noopener">
           herdstone
-        </a>{" "}
-        — concurrent pings fanning out across a fleet.{" "}
+        </a>
+        : concurrent pings fanning out across a fleet.{" "}
         <button className="btn" onClick={ping}>
           re-ping
         </button>
