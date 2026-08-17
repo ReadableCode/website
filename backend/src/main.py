@@ -139,6 +139,20 @@ PROJECTS = [
         "tags": ["TypeScript", "Phaser 3"],
     },
     {
+        "id": "solitaire-associations",
+        "name": "Solitaire Associations",
+        "url": "https://github.com/ReadableCode/Solitaire_Associations",
+        "blurb": (
+            "A word-association solitaire game for the browser: cards deal into tableau "
+            "columns and every word belongs to exactly one of four categories. 150 levels "
+            "ramp on one curve that tightens the move budget, buries more of the deck, and "
+            "withdraws hints as you climb. The engine is a dependency-free ES module, "
+            "deterministic given a level and a seed, so the rules are tested under node "
+            "with no browser involved."
+        ),
+        "tags": ["FastAPI", "vanilla JS", "PostgREST"],
+    },
+    {
         "id": "terminal-todo",
         "name": "Terminal To-Do",
         "url": "https://github.com/ReadableCode/Terminal_To_Do",
