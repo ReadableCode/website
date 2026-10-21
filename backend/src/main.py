@@ -99,11 +99,12 @@ PROJECTS = [
         "name": "Book-Bot",
         "url": "https://github.com/ReadableCode/Book-Bot",
         "blurb": (
-            "An offline eBook organizer. A local LLM (no internet or accounts required) "
-            "works out author, series, order, and title from messy folders and rebuilds "
-            "the library into clean nested folders. Can be pointed at hosted APIs instead."
+            "A mobile-first home library website: scan a book's barcode or search by "
+            "title, file it on the shelves or the wishlist, and see whether you already "
+            "own that story in another edition. Shared household libraries, per-user "
+            "reading history and a walkable 3D shelf view."
         ),
-        "tags": ["Python", "local-LLM", "SQLite"],
+        "tags": ["FastAPI", "PostgREST", "Three.js"],
     },
     {
         "id": "dotfiles",

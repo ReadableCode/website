@@ -64,7 +64,7 @@ Screenshots come from each project's own repo, taken against demo data.
   <tr>
     <td valign="top">
       <a href="https://github.com/ReadableCode/Book-Bot"><b>Book-Bot</b></a><br>
-      Offline eBook organizer: a local LLM sorts messy folders into a clean library.<br><br>
+      Home library website: scan a barcode to see whether you already own that book in any edition.<br><br>
       <img src="docs/screenshots/projects/book_bot.png" alt="Book-Bot shelves view">
     </td>
     <td valign="top">

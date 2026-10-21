@@ -65,8 +65,8 @@ export const PROJECTS: Project[] = [
     name: "Book-Bot",
     url: "https://github.com/ReadableCode/Book-Bot",
     blurb:
-      "An offline eBook organizer. A local LLM (no internet or accounts required) works out author, series, order, and title from messy folders and rebuilds the library into clean nested folders. Can be pointed at hosted APIs instead.",
-    tags: ["Python", "local-LLM", "SQLite"],
+      "A mobile-first home library website: scan a book's barcode or search by title, file it on the shelves or the wishlist, and see whether you already own that story in another edition. Shared household libraries, per-user reading history and a walkable 3D shelf view.",
+    tags: ["FastAPI", "PostgREST", "Three.js"],
   },
   {
     id: "dotfiles",
@@ -115,7 +115,7 @@ export const SKILLS: [string, string][] = [
   ["Web / API", "FastAPI, React 19 + Vite, nginx, Streamlit, NiceGUI, Phaser 3"],
   ["TUI / CLI", "Textual, Typer, Rich, custom terminal apps"],
   ["Data", "pandas, DuckDB, warehouse connectors (Snowflake/Databricks/Looker), OCR/PDF"],
-  ["Databases / storage", "PostgreSQL + PostgREST, Alembic + RLS, SQLite, MinIO/S3, Vault"],
+  ["Databases / storage", "PostgreSQL + PostgREST, row-level security, SQLite, MinIO/S3, Vault"],
   ["Auth / security", "Authelia SSO, JWT (HS256), bcrypt/argon2, Postgres Row-Level Security"],
   [
     "Infra / DevOps",
