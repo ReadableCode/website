@@ -94,7 +94,6 @@ Screenshots come from each project's own repo, taken against demo data.
     <td valign="top">
       Also featured, without a UI to show:
       <a href="https://github.com/ReadableCode/readable_utils">readable_utils</a>,
-      <a href="https://github.com/ReadableCode/Data_Tool_Pack_Py">Data Tool Pack</a>,
       <a href="https://github.com/ReadableCode/postgrest-auth">postgrest-auth</a>,
       and the private self-hosted platform the site runs on.
     </td>

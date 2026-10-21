@@ -45,14 +45,6 @@ export const PROJECTS: Project[] = [
     tags: ["Python", "packaging", "uv"],
   },
   {
-    id: "data-tool-pack",
-    name: "Data Tool Pack (Python / Go / Rust)",
-    url: "https://github.com/ReadableCode/Data_Tool_Pack_Py",
-    blurb:
-      "Uniform connectors for Snowflake, Databricks, S3, Vault, DuckDB, Google Workspace, and Looker, so analytics work doesn't start with a day of setup. Python, Go, and Rust editions.",
-    tags: ["Python", "Go", "Rust", "data"],
-  },
-  {
     id: "load-log",
     name: "load-log",
     url: "https://github.com/ReadableCode/load-log",
