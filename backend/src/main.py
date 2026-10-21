@@ -78,8 +78,8 @@ PROJECTS = [
         "url": "https://github.com/ReadableCode/load-log",
         "blurb": (
             "A health tracker with a Textual TUI and a Streamlit web UI over shared "
-            "storage. Neither UI touches Postgres directly: both go through PostgREST "
-            "with JWT auth and row-level security."
+            "storage. Both read and write only through PostgREST with JWT auth and "
+            "row-level security; login runs in-process via postgrest-auth."
         ),
         "tags": ["PostgREST", "JWT", "RLS"],
     },
@@ -88,11 +88,11 @@ PROJECTS = [
         "name": "postgrest-auth",
         "url": "https://github.com/ReadableCode/postgrest-auth",
         "blurb": (
-            "A small JWT auth service that sits next to PostgREST: POST /token checks a "
-            "bcrypt hash and returns a JWT carrying the Postgres role and user id for RLS. "
-            "Written once, used by my other apps."
+            "A small Python library that logs users in for PostgREST apps: it checks an "
+            "argon2id hash in the app's own users table and returns a JWT carrying the "
+            "Postgres role and user id for RLS. Written once, imported by my other apps."
         ),
-        "tags": ["FastAPI", "JWT", "bcrypt"],
+        "tags": ["Python", "JWT", "argon2"],
     },
     {
         "id": "book-bot",
