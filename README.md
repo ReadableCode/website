@@ -32,6 +32,75 @@ show that the page itself is a running service rather than a static export.
 
 ![Project cards](docs/screenshots/projects.png)
 
+## Projects featured on the site
+
+Screenshots come from each project's own repo, taken against demo data.
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://github.com/ReadableCode/Sync_Plex"><b>Sync_Plex</b></a><br>
+      Search Plex libraries and add shows or movies across media servers from a CLI, TUI or web app.<br><br>
+      <img src="docs/screenshots/projects/sync_plex.png" alt="Sync_Plex TUI">
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://github.com/ReadableCode/herdstone"><b>herdstone</b></a><br>
+      Machine-herd monitor: one engine, three UIs, concurrent ping fan-out.<br><br>
+      <img src="docs/screenshots/projects/herdstone.png" alt="herdstone TUI">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <a href="https://github.com/ReadableCode/status_board"><b>status_board</b></a><br>
+      Terminal dashboard for remote cron jobs over SSH and PRs awaiting review.<br><br>
+      <img src="docs/screenshots/projects/status_board.png" alt="status_board">
+    </td>
+    <td valign="top">
+      <a href="https://github.com/ReadableCode/load-log"><b>load-log</b></a><br>
+      Health tracker with a Textual TUI and a Streamlit web UI over PostgREST.<br><br>
+      <img src="docs/screenshots/projects/load_log.png" alt="load-log habits view">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <a href="https://github.com/ReadableCode/Book-Bot"><b>Book-Bot</b></a><br>
+      Offline eBook organizer: a local LLM sorts messy folders into a clean library.<br><br>
+      <img src="docs/screenshots/projects/book_bot.png" alt="Book-Bot shelves view">
+    </td>
+    <td valign="top">
+      <a href="https://github.com/ReadableCode/dotfiles"><b>dotfiles</b></a><br>
+      Config sync and provisioning across machines, including a terminal calendar board.<br><br>
+      <img src="docs/screenshots/projects/dotfiles.png" alt="calendar board grid view">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <a href="https://github.com/ReadableCode/Trojan-Force"><b>Trojan-Force</b></a><br>
+      Browser tower-defense game in TypeScript and Phaser 3.<br><br>
+      <img src="docs/screenshots/projects/trojan_force.png" alt="Trojan-Force wave">
+    </td>
+    <td valign="top">
+      <a href="https://github.com/ReadableCode/Solitaire_Associations"><b>Solitaire Associations</b></a><br>
+      Word-association solitaire with 150 levels.<br><br>
+      <img src="docs/screenshots/projects/solitaire_associations.png" alt="Solitaire Associations game">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <a href="https://github.com/ReadableCode/Terminal_To_Do"><b>Terminal To-Do</b></a><br>
+      Terminal Kanban board driven by Linux-like commands.<br><br>
+      <img src="docs/screenshots/projects/terminal_to_do.png" alt="Terminal To-Do board">
+    </td>
+    <td valign="top">
+      Also featured, without a UI to show:
+      <a href="https://github.com/ReadableCode/readable_utils">readable_utils</a>,
+      <a href="https://github.com/ReadableCode/Data_Tool_Pack_Py">Data Tool Pack</a>,
+      <a href="https://github.com/ReadableCode/postgrest-auth">postgrest-auth</a>,
+      and the private self-hosted platform the site runs on.
+    </td>
+  </tr>
+</table>
+
 ### From a terminal
 
 ```bash
@@ -92,7 +161,7 @@ bundled project list and bio and the badge shows "self-hosted". To see the
 frontend talk to the backend, run both containers so nginx does the proxying:
 
 ```bash
-docker compose --project-directory . -f deploy/compose.elitedesk.yaml up --build
+docker compose --project-directory . -f deploy/compose.*.yaml up --build
 # then open http://localhost:8082
 ```
 

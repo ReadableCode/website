@@ -113,7 +113,7 @@ export const PROJECTS: Project[] = [
     name: "Self-hosted platform",
     url: "",
     blurb:
-      "The infrastructure everything else runs on: multi-host Docker Compose behind a SWAG reverse proxy with TLS and dynamic DNS. elitedesk, the main server, runs Authelia, Vaultwarden, Postgres with PostgREST and pgAdmin, MinIO, Grafana, ntfy, Portainer, Plex, a private registry, and my own apps, each included from its own repo's compose file. behemoth, an Unraid NAS, holds the bulk storage. Pushing to master redeploys whatever changed. The repo stays private since it maps my internal network.",
+      "The infrastructure everything else runs on: multi-host Docker Compose behind a SWAG reverse proxy with TLS and dynamic DNS. The main server runs Authelia, Vaultwarden, Postgres with PostgREST and pgAdmin, MinIO, Grafana, ntfy, Portainer, Plex, a private registry, and my own apps, each included from its own repo's compose file. An Unraid NAS holds the bulk storage. Pushing to master redeploys whatever changed. The repo stays private since it maps my internal network.",
     tags: ["Docker", "SWAG", "self-hosting"],
   },
 ];
